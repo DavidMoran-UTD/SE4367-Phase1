@@ -22,6 +22,9 @@ import org.junit.runner.Result;
 import org.junit.runner.notification.RunListener;
 import CodeCoverage.StatementCoverageData;
 
+/*
+ * This class is the JUnit Listener that will listen for the beginning and end of the JUnit test methods
+ */
 public class Listener extends RunListener
 {
 	static FileWriter writer;

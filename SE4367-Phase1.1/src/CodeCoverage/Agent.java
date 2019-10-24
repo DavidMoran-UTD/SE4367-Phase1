@@ -7,8 +7,10 @@ import java.lang.instrument.Instrumentation;
  */
 public class Agent 
 {	
+	// This is our premain method that executes first
     public static void premain(String agentArgs, Instrumentation inst)
     {
+    		// Add the transformed class file to the Instrumentation 
         inst.addTransformer(new MyClassFileTransformer()); 
 
     }

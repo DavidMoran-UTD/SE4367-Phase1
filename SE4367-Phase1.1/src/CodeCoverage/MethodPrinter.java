@@ -9,17 +9,26 @@ import org.objectweb.asm.Opcodes;
  */
 class MethodPrinter extends MethodVisitor implements Opcodes {
 
-	String cName;
+	// String to hold the name
+	String className;
 	
+	// This method will print the class name that we are visiting
     public MethodPrinter(final MethodVisitor mv, String className) {
+    			// Call the method from the superclass
             super(ASM5, mv);
-            this.cName=className;
+            // Set the name to the one given in the arguments
+            this.className=className;
     }
 		
+    // Override the visitLineNumber method from the superclass that will print out the information 
+    // for the class that we are visiting
 	@Override
-	public void visitLineNumber(int line, Label start) {		
-			mv.visitLdcInsn(cName+":"+line+"\n");
+	public void visitLineNumber(int line, Label start) {	
+			// Print the name and the line number that we are visiting
+			mv.visitLdcInsn(className+":"+line+"\n");
+			// Call visitMethodInsn
 			mv.visitMethodInsn(INVOKESTATIC, "TestCompetition/JavaAgent/StatementCoverageData", "lineExecuted", "(Ljava/lang/String;)V", false);
+			// Call the superclass method with our parameters
 			super.visitLineNumber(line, start);
 	}
 }
