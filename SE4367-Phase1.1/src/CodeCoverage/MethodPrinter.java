@@ -27,7 +27,7 @@ class MethodPrinter extends MethodVisitor implements Opcodes {
 			// Print the name and the line number that we are visiting
 			mv.visitLdcInsn(className+":"+line+"\n");
 			// Call visitMethodInsn
-			mv.visitMethodInsn(INVOKESTATIC, "TestCompetition/JavaAgent/StatementCoverageData", "lineExecuted", "(Ljava/lang/String;)V", false);
+			mv.visitMethodInsn(INVOKESTATIC, "CodeCoverage/StatementCoverageData", "lineExecuted", "(Ljava/lang/String;)V", false);
 			// Call the superclass method with our parameters
 			super.visitLineNumber(line, start);
 	}
