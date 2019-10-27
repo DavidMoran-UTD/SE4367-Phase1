@@ -1,18 +1,3 @@
-/*
- *  Copyright 2001-2011 Stephen Colebourne
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- */
 
 package org.joda.time;
  
@@ -27,43 +12,51 @@ import CodeCoverage.StatementCoverageData;
  */
 public class Listener extends RunListener
 {
+	// Create a FileWriter so we can write to our files
 	static FileWriter writer;
 	
+	// This method listens to see when the JUnit test has started
 	public void testRunStarted(Description description) throws java.lang.Exception 
 	{
           try 
 	  {
+        	 // Create a file for output
 		 File testFile = new File("stmt-cov.txt");
+		 // If the file already exists, delete it 
 		 if (testFile.exists())
-                       testFile.delete();
-                 else		   
-		       testFile.createNewFile();
+			 testFile.delete();
+         else		  
+        	 	// Otherwise, create a new file
+        	 	testFile.createNewFile();
+		 // Link the writer to the file we just created
 		 writer = new FileWriter("stmt-cov.txt",false);
 	  }
+      // Print out the stack if we encounter any errors
 	  catch (Exception ex) 
 	  {
 	          ex.printStackTrace();
 	
 	  }
         }	
-	/**
-	 *  Called when all tests have finished
-	 * */
+	
+	// This method will listen for when the JUnit test have finished
 	public void testRunFinished(Result result) throws java.lang.Exception
 	{
+		// Close the writer
 		writer.close();
 	}
 	
+	// This method will listen for when an atomic test is finished
 	public void testFinished(Description description) throws java.lang.Exception
 	{
+		// Write the statement coverage we have collected into the file
         StatementCoverageData.writeIntoFile(writer);
-        }
+    }
 
-	/**
-	 *  Called when an atomic test is about to be started.
-	 * */
+	// This method will listen for when an atomic test is starting
 	public void testStarted(Description description) throws java.lang.Exception
 	{
-		 writer.write("[TEST] "+description.getClassName()+":"+description.getMethodName() + System.lineSeparator());
+		// Add the following line to the writer 
+		writer.write("[TEST] "+description.getClassName()+":"+description.getMethodName() + System.lineSeparator());
 	}
 }
