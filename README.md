@@ -11,7 +11,7 @@ Next, we need to add our project as a dependency to the project we want to gathe
     <version>1.0-SNAPSHOT</version>
 </dependency>
 ```xml
-1. We first need to add the agent and the listener to the plug ins.  Simply add the following code to pom.xml.
+1. We first need to add the agent and the listener to the plug ins.  Simply add the following code to pom.xml and replace [your-agent-jar] with the absolute path to your Java agent jar file.
 
 ```xml
          <plugin>
@@ -19,7 +19,7 @@ Next, we need to add our project as a dependency to the project we want to gathe
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
             <configuration>
-                <argLine>-javaagent:${CodeCoverage:code-coverage:jar}=${project.groupId}</argLine>
+                <argLine>-javaagent:[your-agent-jar]</argLine>
                 <properties>
                     <property>
                         <name>listener</name>
@@ -30,25 +30,6 @@ Next, we need to add our project as a dependency to the project we want to gathe
         </plugin>
 ```
 
-2. We then need to add the asm library to the dependencies as it is used throughout the project.  
 
-```xml
-<dependency>
-<groupId>org.ow2.asm</groupId>
-<artifactId>asm</artifactId>
-<version>7.2</version>
-</dependency>
-```
- 
-3. Finally, we need to add the JUnit package as a dependency
-
-```xml
-<dependency>
-<groupId>junit</groupId>
-<artifactId>junit</artifactId>
-<version>4.13-beta-3</version>
-<scope>test</scope>
-</dependency>
-```
 
 We are now ready to test.  We simply need to run the command "mvn test", and the program should automatically collect code coverage for the project.  The coverage data will be output in a file called "stmt-cov.txt".  The statement coverage for all of the test methods will be included in this file.  The test methods will have [TEST] as a prefix on the line, and the other lines are the will be the methods covered by that test method. 
