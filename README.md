@@ -3,7 +3,7 @@
 There are 4 steps that need to be completed in order for the project to be able to run successfully. 
 The first thing we need to do is run "mvn clean" and "mvn install" on the project.
 Next, we need to add our project as a dependency to the project we want to gather the code coverage for. 
-1. We need to add the jar file from our project as a dependency
+1. We first need to add the jar file from our project as a dependency in the pom.xml of the target project that we want to gather statement coverage for. 
 ```xml
 <dependency>
     <groupId>CodeCoverage</groupId>
@@ -12,7 +12,7 @@ Next, we need to add our project as a dependency to the project we want to gathe
 </dependency>
 ```
 
-1. We first need to add the agent and the listener to the plug ins.  Simply add the following code to pom.xml and replace [your-agent-jar] with the absolute path to your Java agent jar file.
+2. We then need to add the agent and the listener to the plug ins.  Simply add the following code to pom.xml and replace [your-agent-jar] with the absolute path to your Java agent jar file, and [your-project-name] with the name of the project.  
 
 ```xml
          <plugin>
@@ -20,7 +20,7 @@ Next, we need to add our project as a dependency to the project we want to gathe
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-surefire-plugin</artifactId>
             <configuration>
-                <argLine>-javaagent:[your-agent-jar]</argLine>
+                <argLine>-javaagent:[your-agent-jar]=[name-of-project]=[your-project-name]</argLine>
                 <properties>
                     <property>
                         <name>listener</name>
