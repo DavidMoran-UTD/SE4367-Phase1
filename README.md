@@ -11,6 +11,7 @@ Next, we need to add our project as a dependency to the project we want to gathe
     <version>1.0-SNAPSHOT</version>
 </dependency>
 ```xml
+
 1. We first need to add the agent and the listener to the plug ins.  Simply add the following code to pom.xml and replace [your-agent-jar] with the absolute path to your Java agent jar file.
 
 ```xml
