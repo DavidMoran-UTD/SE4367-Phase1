@@ -4,11 +4,13 @@ There are 4 steps that need to be completed in order for the project to be able 
 The first thing we need to do is run "mvn clean" and "mvn install" on the project.
 Next, we need to add our project as a dependency to the project we want to gather the code coverage for. 
 1. We need to add the jar file from our project as a dependency
+```xml
 <dependency>
     <groupId>CodeCoverage</groupId>
     <artifactId>code-coverage</artifactId>
     <version>1.0-SNAPSHOT</version>
 </dependency>
+```xml
 1. We first need to add the agent and the listener to the plug ins.  Simply add the following code to pom.xml.
 
 ```xml
