@@ -19,18 +19,7 @@ There are 4 steps that need to be completed in order for the project to be able 
 </plugin>
 ```
 
-2. We then need to add the agent.jar file as a dependency so it can be used by the Listener.  Replace [your-agent.jar] with the name of your agent's jar file and update the version if necessary. Also, replace [your-agent-package] with the package that contains your agent. 
-
-```xml
-<dependency>
-<artifactId>[your-agent's-package]</artifactId>
-<groupId>[your-agent.jar]</groupId>
-<version>1.0</version>
-<scope>system</scope>
-<systemPath>${basedir}/[your-agent.jar]</systemPath>
-</dependency>
-```
-3. We then need to add the asm library to the dependencies as it is used throughout the project.  
+2. We then need to add the asm library to the dependencies as it is used throughout the project.  
 
 ```xml
 <dependency>
@@ -40,7 +29,7 @@ There are 4 steps that need to be completed in order for the project to be able 
 </dependency>
 ```
  
-4. Finally, we need to add the JUnit package as a dependency
+3. Finally, we need to add the JUnit package as a dependency
 
 ```xml
 <dependency>
