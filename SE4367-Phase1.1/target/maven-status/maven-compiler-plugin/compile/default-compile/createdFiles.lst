@@ -1,0 +1,6 @@
+CodeCoverage/ClassPrinter.class
+CodeCoverage/MethodPrinter.class
+CodeCoverage/Agent.class
+CodeCoverage/StatementCoverageData.class
+org/joda/time/Listener.class
+CodeCoverage/MyClassFileTransformer.class
