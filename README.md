@@ -12,27 +12,28 @@ Next, we need to add our project as a dependency to the project we want to gathe
 </dependency>
 ```
 2. We also need to make sure that ASM is included as a dependency:
+```xml
 <dependency>
    <groupId>org.ow2.asm</groupId>
    <artifactId>asm</artifactId>
    <version>5.0.3</version>
 </dependency>
-
+```
 3. Finally, we then need to add the agent and the listener to the plug ins.  Simply add the following code snippet to the pom.xml.  If the surefire plugin is already in the pom.xml, just add the lines from within the configuration.    
 
 ```xml
 <plugin>
-   <groupId>org.apache.maven.plugins</groupId>
-   <artifactId>maven-surefire-plugin</artifactId>
-   <configuration>
-      <argLine>-javaagent:${edu.utdallas:code-coverage:jar}=${project.groupId}</argLine>          
-      <properties>
-			      <property>
-			         <name>listener</name>
-            <value>edu.utdallas.Listener</value>			
-         </property>
-			   </properties>
-   </configuration>
+ 	<groupId>org.apache.maven.plugins</groupId>
+ 	<artifactId>maven-surefire-plugin</artifactId>
+	<configuration>
+      		<argLine>-javaagent:${edu.utdallas:code-coverage:jar}=${project.groupId}</argLine>          
+      		<properties>
+			<property>
+				<name>listener</name>
+				<value>edu.utdallas.Listener</value>			
+  			</property>
+		</properties>
+   	</configuration>
 </plugin>
 ```
 
